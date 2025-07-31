@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36310.24
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApi", "StoreApi\StoreApi.csproj", "{24D0E0CE-BED1-45CA-8E4E-39157E3242C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApiUnitTests", "StoreApiUnitTests\StoreApiUnitTests.csproj", "{08D23814-D0D9-4B7B-9A7A-859F53A70A44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{24D0E0CE-BED1-45CA-8E4E-39157E3242C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24D0E0CE-BED1-45CA-8E4E-39157E3242C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24D0E0CE-BED1-45CA-8E4E-39157E3242C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08D23814-D0D9-4B7B-9A7A-859F53A70A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08D23814-D0D9-4B7B-9A7A-859F53A70A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08D23814-D0D9-4B7B-9A7A-859F53A70A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08D23814-D0D9-4B7B-9A7A-859F53A70A44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
