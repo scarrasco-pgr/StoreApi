@@ -54,10 +54,10 @@ namespace StoreApi.Controllers
             return NoContent();
         }
 
-        [HttpPost("{customerId}/Orders")]
-        public async Task<ActionResult<Order>> CustomerCreateOrder(Guid customerId, [FromBody] CustomerCreateOrderDto dto)
+        [HttpPost("{id}/Orders")]
+        public async Task<ActionResult<Order>> CustomerCreateOrder(Guid id, [FromBody] CustomerCreateOrderDto dto)
         {
-            var order = await _customerService.CreateOrderForCustomerAsync(customerId, dto);
+            var order = await _customerService.CreateOrderForCustomerAsync(id, dto);
             if (order == null) return BadRequest("Invalid customer or product IDs.");
             return CreatedAtAction(nameof(GetCustomerOrders), new { id = order.CustomerId }, order);
         }

@@ -1,13 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using StoreApi.Data;
 using StoreApi.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StoreDbContext>(options =>
@@ -15,8 +13,9 @@ builder.Services.AddDbContext<StoreDbContext>(options =>
     options.UseSqlite(
         builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-builder.Services.AddAutoMapper(typeof(StoreApi.Models.Profiles.CustomerProfile));
-builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddStoreScopedServices();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
