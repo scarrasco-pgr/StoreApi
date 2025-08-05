@@ -15,7 +15,7 @@ namespace StoreApi.Controllers
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
             => Ok(await _customerService.GetCustomersAsync());
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<Customer>> GetCustomer(Guid id)
         {
             var customer = await _customerService.GetCustomerAsync(id);
@@ -23,7 +23,7 @@ namespace StoreApi.Controllers
             return customer;
         }
 
-        [HttpGet("{id}/Orders")]
+        [HttpGet("{id:guid}/Orders")]
         public async Task<ActionResult<IEnumerable<Order>>> GetCustomerOrders(Guid id)
         {
             var customer = await _customerService.GetCustomerAsync(id);
@@ -31,7 +31,7 @@ namespace StoreApi.Controllers
             return Ok(await _customerService.GetCustomerOrdersAsync(id));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         public async Task<IActionResult> PutCustomer(Guid id, UpdateCustomerDto customerDto)
         {
             var success = await _customerService.UpdateCustomerAsync(id, customerDto);
@@ -46,7 +46,7 @@ namespace StoreApi.Controllers
             return CreatedAtAction("GetCustomer", new { id = customer.Id }, customer);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteCustomer(Guid id)
         {
             var success = await _customerService.DeleteCustomerAsync(id);
@@ -54,7 +54,7 @@ namespace StoreApi.Controllers
             return NoContent();
         }
 
-        [HttpPost("{id}/Orders")]
+        [HttpPost("{id:guid}/Orders")]
         public async Task<ActionResult<Order>> CustomerCreateOrder(Guid id, [FromBody] CustomerCreateOrderDto dto)
         {
             var order = await _customerService.CreateOrderForCustomerAsync(id, dto);

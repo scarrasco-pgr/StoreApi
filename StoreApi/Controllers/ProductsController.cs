@@ -18,7 +18,7 @@ namespace StoreApi.Controllers
             return Ok(products);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<Product>> GetProduct(Guid id)
         {
             var product = await _service.GetProductAsync(id);
@@ -34,7 +34,7 @@ namespace StoreApi.Controllers
             return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, product);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         public async Task<IActionResult> PutProduct(Guid id, UpdateProductDto dto)
         {
             var updated = await _service.UpdateProductAsync(id, dto);
@@ -43,7 +43,7 @@ namespace StoreApi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
             var deleted = await _service.DeleteProductAsync(id);

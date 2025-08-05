@@ -18,7 +18,7 @@ namespace StoreApi.Controllers
             return Ok(orders);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<Order>> GetOrder(Guid id)
         {
             var order = await _service.GetOrderAsync(id);
@@ -27,7 +27,7 @@ namespace StoreApi.Controllers
             return Ok(order);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         public async Task<IActionResult> PutOrder(Guid id, UpdateOrderDto dto)
         {
             var updated = await _service.UpdateOrderAsync(id, dto);
@@ -36,7 +36,7 @@ namespace StoreApi.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         public async Task<IActionResult> DeleteOrder(Guid id)
         {
             var deleted = await _service.DeleteOrderAsync(id);
