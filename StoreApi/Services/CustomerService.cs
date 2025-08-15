@@ -59,11 +59,11 @@ namespace StoreApi.Services
             {
                 CustomerId = customerId,
                 OrderPlaced = DateTime.UtcNow,
-                OrderItems = dto.Items.Select(i => new OrderDetail
+                OrderItems = [.. dto.Items.Select(i => new OrderDetail
                 {
                     ProductId = i.ProductId,
                     Quantity = i.Quantity
-                }).ToList()
+                })]
             };
 
             _context.Orders.Add(order);
