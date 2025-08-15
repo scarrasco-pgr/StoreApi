@@ -209,7 +209,7 @@ namespace StoreApiUnitTests.Controllers
             {
                 Items = [new() { ProductId = Guid.NewGuid(), Quantity = 1 }]
             };
-            _customerService.CreateOrderForCustomerAsync(customerId, createOrderDto).Returns((Order)null);
+            _customerService.CreateOrderForCustomerAsync(customerId, createOrderDto).Returns((Order?)null);
 
             // Act
             var result = await _controller.CustomerCreateOrder(customerId, createOrderDto);

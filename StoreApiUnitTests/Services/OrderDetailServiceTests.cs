@@ -105,7 +105,7 @@ namespace StoreApiUnitTests.Services
             // Assert
             Assert.True(result);
             var updatedOrderDetail = await _context.OrderDetails.FindAsync(orderDetailId);
-            Assert.Equal(updateDto.Quantity, updatedOrderDetail.Quantity);
+            Assert.Equal(updateDto.Quantity, updatedOrderDetail?.Quantity);
         }
 
         [Fact]

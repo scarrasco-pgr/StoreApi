@@ -104,6 +104,7 @@ namespace StoreApiUnitTests.Services
             // Assert
             Assert.NotNull(result);
             Assert.Equal(orderId, result.Id);
+            Assert.NotNull(result.Customer);
             Assert.Equal(customer.Id, result.Customer.Id);
             Assert.Single(result.OrderItems);
         }
@@ -139,6 +140,7 @@ namespace StoreApiUnitTests.Services
             // Assert
             Assert.True(result);
             var updatedOrder = await _context.Orders.FindAsync(orderId);
+            Assert.NotNull(updatedOrder);
             Assert.Equal(updateDto.OrderPlaced, updatedOrder.OrderPlaced);
         }
 
