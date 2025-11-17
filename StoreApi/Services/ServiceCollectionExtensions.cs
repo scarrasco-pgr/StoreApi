@@ -1,4 +1,8 @@
-﻿namespace StoreApi.Services
+﻿using FluentValidation;
+using StoreApi.Models.DTOs.Customer;
+using StoreApi.Validators.Customer;
+
+namespace StoreApi.Services
 {
     public static class ServiceCollectionExtensions
     {
@@ -8,6 +12,8 @@
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IOrderDetailService, OrderDetailService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IValidator<CreateCustomerDto>, CreateCustomerValidator>();
+            services.AddScoped<ICustomerValidationService, CustomerValidationService>();
             return services;
         }
     }

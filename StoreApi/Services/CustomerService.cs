@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using StoreApi.Data;
 using StoreApi.Models.Domain;
@@ -6,10 +7,11 @@ using StoreApi.Models.DTOs.Customer;
 
 namespace StoreApi.Services
 {
-    public class CustomerService(StoreDbContext context, IMapper mapper) : ICustomerService
+    public class CustomerService(StoreDbContext context, IMapper mapper, ICustomerValidationService validator) : ICustomerService
     {
         private readonly StoreDbContext _context = context;
         private readonly IMapper _mapper = mapper;
+        private readonly ICustomerValidationService _validator = validator;
 
         public async Task<IEnumerable<Customer>> GetCustomersAsync()
             => await _context.Customers.ToListAsync();
@@ -22,6 +24,7 @@ namespace StoreApi.Services
 
         public async Task<Customer> AddCustomerAsync(CreateCustomerDto dto)
         {
+            await _validator.ValidateCreateCustomer(dto);
             var customer = _mapper.Map<Customer>(dto);
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
