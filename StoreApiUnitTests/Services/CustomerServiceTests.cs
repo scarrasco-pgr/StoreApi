@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using NSubstitute;
 using StoreApi.Data;
 using StoreApi.Models.Domain;
 using StoreApi.Models.DTOs.Customer;
@@ -12,6 +13,7 @@ namespace StoreApiUnitTests.Services
         private readonly StoreDbContext _context;
         private readonly IMapper _mapper;
         private readonly CustomerService _service;
+        private readonly ICustomerValidationService _validator;
 
         public CustomerServiceTests()
         {
@@ -30,8 +32,11 @@ namespace StoreApiUnitTests.Services
             });
             _mapper = configuration.CreateMapper();
 
+            // Create NSubstitute mock for validation service
+            _validator = Substitute.For<ICustomerValidationService>();
+
             // Initialize the service
-            _service = new CustomerService(_context, _mapper);
+            _service = new CustomerService(_context, _mapper, _validator);
         }
 
         [Fact]
